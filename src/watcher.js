@@ -13,7 +13,7 @@ class Watcher {
       log.debug('Changed:', localPath)
 
       // Skip excluded.
-      if (exclude && mm(exclude, localPath)) {
+      if (exclude && mm.isMatch(localPath, exclude)) {
         return
       }
 

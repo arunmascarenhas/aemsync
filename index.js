@@ -21,6 +21,7 @@ Options:
 Website: https://github.com/gavoja/aemsync`
 
 function aemsync (args) {
+  log.isDebug = args.d
   let pusher = new Pusher(args.targets.split(','), args.pushInterval, args.onPushEnd)
   let watcher = new Watcher()
 

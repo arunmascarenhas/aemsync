@@ -13,10 +13,16 @@ The tool pushes code changes to AEM instance(s) upon a file change.
 
 ### Installation
 
-With [npm](http://npmjs.org) do:
+With [npm](https://npmjs.org) do:
 
 ```
 npm install aemsync -g
+```
+
+With [yarn](https://yarnpkg.com) do:
+
+```
+yarn global add aemsync
 ```
 
 ### Usage
@@ -30,8 +36,8 @@ aemsync -t targets -w path_to_watch
 -i: Update interval; default is 300ms.
 -e: Anymatch exclude filter; any file matching the pattern will be skipped.
 -d: Enable debug mode.
-```
-```
+
+Example:
 aemsync -t http://admin:admin@localhost:4502,http://admin:admin@localhost:4503 -w ~/workspace/my_project
 ```
 
@@ -42,10 +48,7 @@ const aemsync = require('aemsync')
 
 // Set up the environment.
 let workingDir = '~/workspace/my_project'
-let targets = [
-  'http://admin:admin@localhost:4502',
-  'http://admin:admin@localhost:4503'
-]
+let targets = 'http://admin:admin@localhost:4502,http://admin:admin@localhost:4503'
 let exclude = '**/*.orig' // Skip merge files.
 let pushInterval = 300
 let onPushEnd = (err, host) => {
@@ -54,8 +57,9 @@ let onPushEnd = (err, host) => {
   }
   console.log(`Package pushed to ${host}.`)
 }
+let d = false
 
-aemsync({workingDir, targets, exclude, pushInterval, onPushEnd})
+aemsync({workingDir, targets, exclude, pushInterval, onPushEnd, d})
 ```
 
 ### Description
